@@ -1,0 +1,30 @@
+name: SRM
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+    codedx-analyze:
+      runs-on: [self-hosted]
+
+      steps:
+        - uses: actions/checkout@v2
+        - name: Code Dx Analysis
+          uses: codedx/codedx-github-action@v1.1.1
+          with:
+            # the URL for the Code Dx server (typically ends with `/codedx`)
+            server-url: ${{ secrets.SRM_SERVER_URL }}
+            # an API key or Personal Access Token (PAT) to use when connecting to Code Dx
+            api-key: ${{ secrets.SRM_API_KEY }}
+            # the ID of a project (an integer) created in Code Dx
+            project-id: ${{ secrets.SRM_PROJECT_ID }}
+            # a file glob matching source and binary files (accepts multiple comma-separated globs). if not set, no source/binary files will be sent to Code Dx
+            source-and-binaries-glob: './**'
+            # a file glob matching output files (ie scan results) from an analysis tool (accepts multiple comma-separated globs)
+            # tool-outputs-glob: # optional
+            # whether to wait for the analysis to complete. if true, will fail the build if the analysis encountered an error
+            wait-for-completion: false
+          
