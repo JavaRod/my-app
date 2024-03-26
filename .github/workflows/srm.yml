@@ -1,7 +1,21 @@
-            - name: Code Dx Analysis
-  # You may pin to the exact commit or the version.
-  # uses: codedx/codedx-github-action@82de5406ffc14a268a7326388bacb012967187d0
-  uses: codedx/codedx-github-action@v1.1.1
+name: Java CI with Maven
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+    codedx-analyze:
+      runs-on: ubuntu-latest
+
+      steps:
+        - uses: actions/checkout@v2
+        - name: Code Dx Analysis
+        # You may pin to the exact commit or the version.
+        # uses: codedx/codedx-github-action@82de5406ffc14a268a7326388bacb012967187d0
+        uses: codedx/codedx-github-action@v1.1.1
   with:
     # the URL for the Code Dx server (typically ends with `/codedx`)
     server-url: ${{ secrets.CDX_SERVER_URL }}
