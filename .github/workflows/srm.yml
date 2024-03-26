@@ -4,19 +4,19 @@
   uses: codedx/codedx-github-action@v1.1.1
   with:
     # the URL for the Code Dx server (typically ends with `/codedx`)
-    server-url: 
+    server-url: ${{ secrets.CDX_SERVER_URL }}
     # an API key or Personal Access Token (PAT) to use when connecting to Code Dx
-    api-key: 
+    api-key: ${{ secrets.CDX_API_KEY }}
     # the ID of a project (an integer) created in Code Dx
-    project-id: 
+    project-id: ${{ secrets.CDX_PROJECT_ID }}
     # a file glob matching source and binary files (accepts multiple comma-separated globs). if not set, no source/binary files will be sent to Code Dx
-    source-and-binaries-glob: 
+    source-and-binaries-glob: './**'
     # a file glob matching output files (ie scan results) from an analysis tool (accepts multiple comma-separated globs)
-    tool-outputs-glob: # optional
+    # tool-outputs-glob: # optional
     # whether to wait for the analysis to complete. if true, will fail the build if the analysis encountered an error.
-    wait-for-completion: # optional
+    wait-for-completion: false
     # a custom CA cert to use for HTTPS requests to Code Dx
-    ca-cert: # optional
+    # ca-cert: # optional
     # whether to submit an analysis (false/undefined), or only test the connection and credentials (true). an error in validation will fail the build.
-    dry-run: # optional
+    # dry-run: # optional
           
